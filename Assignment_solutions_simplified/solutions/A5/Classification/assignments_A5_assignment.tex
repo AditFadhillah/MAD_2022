@@ -1,0 +1,166 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage{a4wide}
+\usepackage{url}
+\usepackage[left=2cm,top=2cm,bottom=1.5cm,right=2cm]{geometry}
+\usepackage{fixme}
+\usepackage{url}
+\usepackage{color}
+\usepackage{pstricks}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{dutchcal}
+
+
+\newcommand{\mean}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\iid}{\overset{\text{iid}}{\sim}}
+
+\newcommand{\argmin}{\mathrm{argmin}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\w}{{\mathbf w}}
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\y}{{\mathbf y}}
+\newcommand{\X}{{\mathbf X}}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\del}{\vspace{2mm}\noindent \emph{Deliverables. }}
+\newcommand{\lr}[1]{\left (#1\right)}
+\newcommand{\lrc}[1]{{\left \{#1\right\}}}
+\newcommand{\lra}[1]{\left |#1\right|}
+\newcommand{\lrs}[1]{\left [#1\right]}
+\renewcommand{\P}[1]{\mathbb P\lrc{#1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%\theoremstyle{definition}
+\newtheorem{exer}{Exercise}
+\newcommand{\checker}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\setR}{\mathbb{R}}
+\newcommand{\setZ}{\mathbb{Z}}
+\newcommand{\setN}{\mathbb{N}}
+\newcommand{\setF}{\mathbb{F}}
+\newcommand{\setC}{\mathbb{C}}
+\newcommand{\bigOh}{\mathcal{O}}
+% \newcommand{\lra}{\Leftrightarrow}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\ac}{\textasciicircum}
+\newcommand{\td}{\textasciitilde}
+\newcommand{\uuline}[1]{\underline{\underline{#1}}}
+\newcommand{\bpm}{\begin{pmatrix}}
+\newcommand{\epm}{\end{pmatrix}}
+\newcommand{\dd}{\mathrm{d}}
+\renewcommand{\epsilon}{\varepsilon}
+% \renewcommand{\vec}[1]{\boldsymbol{\mathrm{#1}}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\unit}[1]{\boldsymbol{\mathrm{\hat #1}}}
+\newcommand{\deriv}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\braket}[2]{\left\langle #1\left|#2\right.\right\rangle}
+\newcommand{\expect}[1]{\langle #1 \rangle}
+\newcommand{\mc}[1]{\mathcal{#1}}
+
+\newenvironment{packed_itemize}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+
+%--------------------------------------------------------
+% Commenting macro
+\usepackage{graphicx}
+\usepackage{color}
+
+% Set it to true to get the comments, false to remove them!
+\newboolean{DEBUG}
+\setboolean{DEBUG}{true}
+
+
+\ifthenelse {\boolean{DEBUG}}
+{\newcommand{\aasa}[1]{{\bf \aasacolor{[Aasa says: #1]}}}}
+% {\newcommand{\aasa}[1]{}}
+{\newcommand{\fabian}[1]{{\bf \fabiancolor{[Fabian says: #1]}}}}
+{\newcommand{\fabian}[1]{}}
+
+% Set it to true to get the comments, false to remove them!
+\newboolean{WITHSOLUTIONS}
+\setboolean{WITHSOLUTIONS}{false}
+
+
+\ifthenelse {\boolean{WITHSOLUTIONS}}
+{\newcommand{\solu}[1]{{\noindent \color{blue} {\bf Solution}: \\ #1}}}
+{\newcommand{\solu}[1]{}}
+
+\ifthenelse {\boolean{WITHSOLUTIONS}}
+{\newcommand{\instructions}[1]{{\noindent \color{gray} {\bf Instructions}: \\ #1}}}
+{\newcommand{\instructions}[1]{}}
+
+
+\title{MAD 2020-21, Assignment 5}
+\author{Bulat Ibragimov, Kim Steenstrup Pedersen}
+\date{hand in until: 05.01.2021 at 23:59\\
+}
+
+\begin{document}
+\maketitle 
+
+
+\noindent 
+{\bf General comments:}
+The assignments in MAD must be completed and written individually. You are allowed (and encouraged) to discuss the exercises in small groups. If you do so, you are required to list your group partners in the submission. The report must be written completely by yourself. %\\[1ex]
+%\noindent 
+In order to pass the assignment, you will need to get at least $40 \%$ of the available points. %\\[1ex]
+%\noindent 
+The data needed for the assignment can be found in the assignment folder that you download from Absalon.\\[2ex]
+\noindent 
+{\bf Submission instructions:}
+Submit your report as a PDF, not zipped up with the rest. Please add your source code to the submission, both as executable files and as part of your report. To include it in your report, you can use the \texttt{lstlisting} environment in LaTeX, or you can include a ``print to pdf'' output in your pdf report. 
+
+
+\noindent 
+\hrulefill
+
+
+
+\begin{exer}[\bf 16 points. Classification]
+Please check the corresponding jupyter notebook file with the assignment code and examples.
+
+An iris flower database is given in assignment files. There are 3 iris type, and each iris flower is characterized with 4 attributes. Please read the database using functions from the jupyter notebook and perform the following tasks:
+\par
+\begin{packed_itemize}
+\item[a)] Use PCA code from previous assignment to convert data from 4D to 2D by preserving only 2 most representative eigenvector. If you did not manage to implement PCA, you can simply use first 2 dimensions in the database. Note that using PCA will give you 4 points, whereas taking 2 random dimensions will give you only 1 point.
+\item[b)] Implement kNN classification algorithm and apply it to classify iris database (2 points).
+\item[c)] Try different values of k = {1, 2, 3, 4, 5} and print prediction accuracy for validation set. Please select optimal value of k and justify your selection (3 points).
+\item[d)] Implement random forest classification and apply it to classify iris database. Use any reasonable parameters you want (3 points).
+\item[e)] Visualize results of kNN and random forests. Visualization should be similar to Figure 8 in  https://towardsdatascience.com/solving-a-simple-classification-problem-with-python-fruits-lovers-edition-d20ab6b071d2. Please take care that three things are correctly visualized in the plot, a) coordinates of the datapoints, b) reference labels of datapoints shown as the color of visualization points, and c) classification decision areas shown as different colors. Make colors of reference labels to be similar to the decision areas, but note that reference labels do not necessary always agree with decision boundary colors (4 points).
+\end{packed_itemize}
+
+\instructions{a) 4 point b) 2 points c) 3 points d) 3 points e) 4 points}
+
+\solu{
+	Please check TA version of the jupyter notebook file. For c), there are several values of k that give perfect validation accuracy. Please award only 2 points if students simply selected the any k with perfect accuracy. Please award 3 points only if the student gave some additional justification, e.g. he selected k=3 to reduce computational complexity, or k=5 to increase robustness.
+}
+\end{exer}
+\vskip20pt
+
+\end{document}
+
+
+
+
+
+
+
+
